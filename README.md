@@ -30,7 +30,9 @@ How to Run
 ----------
 Compile:
     mkdir -p bin
+    
     javac -d bin -sourcepath src org/howard/edu/lsp/assignment2/ETLPipeline.java
+    
 
 Run:
     java -cp bin org.howard.edu.lsp.assignment2.ETLPipeline
