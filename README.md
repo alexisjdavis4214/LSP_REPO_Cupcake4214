@@ -59,3 +59,44 @@ How Used:
 External Sources
 ----------------
 N/A
+
+
+
+Assignment 3: OO Redesign of ETL Pipeline
+=========================================
+
+Assumptions
+-----------
+- Input CSV (products.csv) remains in the project’s data/ directory with a valid header and no embedded commas/quotes.
+- Prices are valid decimal numbers.
+- Program runs from the project root so that src/ and data/ are siblings.
+- Missing or empty input file is handled gracefully as in Assignment 2.
+
+Design Notes
+------------
+- The ETL pipeline was redesigned with object-oriented decomposition.
+- Main components:
+  1. **Product** – represents a single product and its attributes.
+  2. **Extractor** – reads products.csv and converts each valid row into a Product.
+  3. **Transformer** – applies transformations:
+       - Uppercases product names
+       - Applies 10% discount for Electronics
+       - Recategorizes as Premium Electronics if discounted price > $500
+       - Computes PriceRange (Low, Medium, High, Premium)
+  4. **Loader** – writes transformed data to data/transformed_products.csv
+  5. **ETLApp (main class)** – orchestrates Extract → Transform → Load steps.
+- This redesign improves **encapsulation** and **separation of concerns** compared to the single-file Assignment 2 solution.
+
+How to Compile & Run
+--------------------
+Compile from project root:
+    
+    mkdir -p bin
+    javac -d bin -sourcepath src src/org/howard/edu/lsp/assignment3/*.java
+
+Run from project root:
+    
+    java -cp bin org.howard.edu.lsp.assignment3.ETLApp
+
+(Ensure data/products.csv exists in the data/ directory.)
+
