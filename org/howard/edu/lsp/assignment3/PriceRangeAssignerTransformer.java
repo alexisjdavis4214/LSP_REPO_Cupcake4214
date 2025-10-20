@@ -2,7 +2,9 @@ package org.howard.edu.lsp.assignment3;
 
 import java.math.BigDecimal;
 
-/** Assigns PriceRange label based on final price. */
+/**
+ * Transformer that assigns a PriceRange label based on the product's final price.
+ */
 public class PriceRangeAssignerTransformer implements Transformer {
     private static final BigDecimal LOW_UP = new BigDecimal("10.00");
     private static final BigDecimal MED_LO = new BigDecimal("10.01");
@@ -11,6 +13,11 @@ public class PriceRangeAssignerTransformer implements Transformer {
     private static final BigDecimal HIGH_UP = new BigDecimal("500.00");
     private static final BigDecimal PREMIUM_LO = new BigDecimal("500.01");
 
+    /**
+     * Assign PriceRange label to product based on its price.
+     *
+     * @param product product to modify
+     */
     @Override
     public void transform(Product product) {
         BigDecimal price = product.getPrice();
