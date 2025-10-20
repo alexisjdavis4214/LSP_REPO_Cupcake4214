@@ -218,6 +218,19 @@ Explain in detail why the current structure does or does not support this. (10 p
 
 Describe how to refactor the structure to allow trim-level change for a car to dynamically change.  Hint: How would you modify Car to use composition to solve the problem? (10 pts.)
 
+---------------------
+
+a) The current structure does not support dynamic trim-level changes because inheritance creates static relationships that are fixed at compile time. 
+Once a car is instantiated as a specific subclass, its type cannot be changed. Java does not allow changing an object's class at runtime. 
+To change trim levels in the current design, you would need to create a new instance of the desired trim class and copy all data from the old object, which loses the original object's identity and all references to it. 
+This approach is error-prone and inefficient. The current design treats trim level as a fundamental part of the car's identity through the class hierarchy, when it should be treated as a changeable attribute. Inheritance should represent permanent "is-a" relationships, not variable characteristics that can change during the manufacturing process.
+
+b) To allow dynamic trim-level changes, the structure should be refactored to use composition instead of inheritance, applying the Strategy Pattern. 
+First, create a TrimLevel interface with concrete implementations for Base, Sports, and Luxury that encapsulate trim-specific behaviors. 
+Then, modify the Car class to have a TrimLevel field instead of inheriting from trim classes, allowing Car to "has-a" trim level rather than "is-a" specific trim type. 
+Add a setTrimLevel(TrimLevel newTrim) method to the Car class that accepts any TrimLevel implementation. The same approach should be applied to the Engine hierarchy. 
+With this design, a car object can dynamically change its trim level at runtime, maintaining the same object identity while allowing flexible configuration changes.
+
 
 Question 4. (30 pts.)
 
