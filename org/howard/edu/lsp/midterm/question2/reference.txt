@@ -1,0 +1,146 @@
+Using Claude.ai 
+
+Prompt: how would you structure this class? give me hints to write the code 
+
+Answer:
+Great question! Here are some hints to help you structure this class with method overloading:
+Key Concepts
+Method Overloading: Multiple methods with the same name but different parameter lists (different number or types of parameters).
+Structural Hints
+
+Class Structure
+
+Create a utility class (maybe called AreaCalculator or Geometry)
+All methods are public static - no need for instance variables
+Consider making the constructor private since this is a utility class
+
+
+Method Signatures
+
+All methods named area (overloading!)
+Distinguish by parameter types and count:
+
+Circle: 1 double parameter
+Rectangle: 2 double parameters
+Triangle: 2 int parameters (base, height)
+Square: 1 int parameter
+
+
+
+
+Validation Pattern
+
+Each method should start with validation
+Check if parameters are <= 0
+Throw IllegalArgumentException with a descriptive message
+Consider: if (param <= 0) throw new IllegalArgumentException("...")
+
+
+Implementation Tips
+
+Circle: Use Math.PI and Math.pow(radius, 2) or radius * radius
+Rectangle: Simple multiplication
+Triangle: Remember to multiply by 0.5 or divide by 2.0
+Square: side * side or Math.pow(side, 2)
+
+
+Return Types
+
+Circle & Rectangle return double (can have fractional areas)
+Triangle returns double (0.5 factor creates decimals)
+Square returns double (keep consistent, even though input is int)
+
+
+
+Example Structure Template
+public class ??? {
+    // Constructor?
+    
+    // Circle method - how many params? what type?
+    
+    // Rectangle method - how many params? what types?
+    
+    // Triangle method - how many params? what types?
+    
+    // Square method - how many params? what type?
+}
+Challenge Question: How will Java know which area() method to call? Think about parameter matching!
+Would you like a hint about any specific method or concept?
+
+
+Prompt: Create a class named Main that invokes each overloaded method statically to produce exactly the following output:
+Circle radius 3.0 → area = 28.274333882308138
+Rectangle 5.0 x 2.0 → area = 10.0
+Triangle base 10, height 6 → area = 30.0
+Square side 4 → area = 16.0
+Finally, invoke at least one of the area methods with a value that causes an IllegalArgumentException to be thrown.
+* Catch the exception using a try/catch block.
+* Print an error message to System.out. (Any message is fine.)
+
+
+Answer :
+
+Here are hints for creating the Main class:
+Main Class Structure
+
+Basic Setup
+
+Create a Main class with a public static void main(String[] args) method
+All your code goes inside main
+
+
+Calling the Methods
+
+Since the area methods are static, call them using: ClassName.area(...)
+Store the result in a variable or print directly
+Format: System.out.println("Circle radius 3.0 → area = " + result);
+
+
+Specific Values to Use
+
+Circle: radius = 3.0
+Rectangle: width = 5.0, height = 2.0
+Triangle: base = 10, height = 6
+Square: side = 4
+
+
+Exception Handling Structure
+
+   try {
+       // Call an area method with invalid input (≤ 0)
+       // For example: area(-5) or area(0, 3)
+   } catch (IllegalArgumentException e) {
+       // Print error message
+       System.out.println("Error: " + ???);
+   }
+
+Tips
+
+You can print the exception message with e.getMessage()
+Or create your own message like "Error: Invalid dimension provided"
+Make sure to test with a value ≤ 0 to trigger the exception
+
+
+
+Example Pattern
+javapublic class Main {
+    public static void main(String[] args) {
+        // Call circle area
+        double circleArea = YourClassName.area(3.0);
+        System.out.println("Circle radius 3.0 → area = " + circleArea);
+        
+        // Call rectangle area
+        // ... 
+        
+        // Continue for triangle and square...
+        
+        // Exception handling
+        try {
+            // What invalid value will you use?
+        } catch (???) {
+            // Print error
+        }
+    }
+}
+Key Question: Which parameter type/count combination will you use to trigger each specific overloaded method?
+

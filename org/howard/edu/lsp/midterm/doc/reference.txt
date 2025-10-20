@@ -1,0 +1,50 @@
+Using claude.ai 
+
+
+
+question 1
+
+prompt:...how you would reorganize or redesign this class to improve its structure?
+
+Answer:
+Refactoring Approach:
+Split the monolithic class into focused, cohesive classes based on responsibility:
+
+AcademicCalculator - Handle GPA computation and grade-related logic
+
+Method: computeGPA(List<Integer> grades)
+
+
+RosterExporter - Manage student roster export functionality
+
+Method: exportRosterToCsv(String filename, List<String> names)
+
+
+EmailService - Handle email generation and communication
+
+Method: makeWelcomeEmail(String studentName)
+
+
+DateFormatter - Format dates for UI display
+
+Method: formatDateForUi(LocalDate date)
+
+
+PaymentProcessor - Process tuition payments
+
+Method: processTuitionPayment(String studentId, double amount)
+
+
+PasswordValidator - Security and password validation
+
+Method: isStrongPassword(String pwd)
+
+
+CacheManager - Data caching operations
+
+Methods: putCache(String key, String value), getCache(String key)
+Field: cache Map
+
+
+
+Each refactored class would have high cohesion because its methods work together on related data toward a single responsibility. This approach follows the "behave thyself" heuristic (Heuristic 2.1: "All data should be hidden within its class"), ensuring each class encapsulates its own concerns and collaborates through well-defined interfaces rather than exposing unrelated functionality through a utility class.
