@@ -492,7 +492,15 @@ Is this design an example of multiple inheritance in Java? Explain why or why no
 
 Grading (30 pts)
 
+---------------------------
 
+1. Device is abstract because different devices need different getStatus() methods. A door lock shows battery percentage but a thermostat shows temperature, so we can't write one status method that works for everything. Making it abstract forces each device type to write its own version and also prevents creating a generic Device object that wouldn't make sense.
+
+2. The interfaces are like requirement lists. When a class implements Networked, it has to include connect(), disconnect(), and isConnected() methods. The interface doesn't provide the code, just says what methods must exist. This lets us treat different devices the same way based on their capabilities, like connecting all Networked devices together regardless of their specific type.
+
+3. No, it's not multiple inheritance. Multiple inheritance means getting code from multiple parent classes, which Java doesn't allow. DoorLock extends one class (Device) but implements multiple interfaces. This is different because interfaces don't provide code, they just require certain methods to exist. 
+
+------------------------------------
 
 
 

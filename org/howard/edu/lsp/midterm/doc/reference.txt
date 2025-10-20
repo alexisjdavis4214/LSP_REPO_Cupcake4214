@@ -48,3 +48,11 @@ Field: cache Map
 
 
 Each refactored class would have high cohesion because its methods work together on related data toward a single responsibility. This approach follows the "behave thyself" heuristic (Heuristic 2.1: "All data should be hidden within its class"), ensuring each class encapsulates its own concerns and collaborates through well-defined interfaces rather than exposing unrelated functionality through a utility class.
+
+
+Question 4
+
+Prompt : give me files and file names for me to copy and paste. DO NOT CHANGE ANY CODE AS SPECIFIED (question code pasted)
+
+Answer : Gave back exact files writen in the question 
+
