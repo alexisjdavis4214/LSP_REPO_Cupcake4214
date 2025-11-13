@@ -100,3 +100,90 @@ Run from project root:
 
 (Ensure data/products.csv exists in the data/ directory.)
 
+
+## Assignment 6: Integer Set Implementation with JUnit Testing
+
+### Assumptions
+* IntegerSet stores unique integers only (no duplicates allowed).
+* `largest()` and `smallest()` throw `IllegalStateException` if the set is empty.
+* `equals(Object o)` compares set contents in an order-independent manner.
+* `toString()` returns elements in square brackets format (e.g., `[1, 2, 3]`).
+* All mutator methods (`add`, `remove`, `union`, `intersect`, `diff`, `complement`) modify the current instance rather than returning a new object.
+* JUnit 5 is used for testing.
+
+### Design Notes
+* **IntegerSet** uses an `ArrayList<Integer>` as the internal data structure to store elements.
+* **No duplicates:** The `add()` method checks if an element exists before adding.
+* **Set operations** leverage ArrayList methods:
+  * `union()` - iterates through the other set and adds unique elements
+  * `intersect()` - uses `retainAll()` to keep only common elements
+  * `diff()` - uses `removeAll()` to remove elements found in the other set
+  * `complement()` - creates a new list from other set and removes elements from this set
+* **Exception handling:** `largest()` and `smallest()` validate that the set is non-empty before proceeding.
+* **equals() implementation:** Compares size first, then uses `containsAll()` for order-independent equality.
+* **Comprehensive testing:** 31 JUnit test cases cover:
+  * Normal operations (add, remove, contains, length, isEmpty, clear)
+  * Edge cases (empty sets, single elements, duplicates)
+  * Exception scenarios (operations on empty sets)
+  * Set operations (union, intersect, diff, complement)
+  * Equality and string representation
+
+### How to Compile & Run
+
+#### From Command Line:
+
+**Compile:**
+```bash
+javac -cp "lib/junit-platform-console-standalone-1.10.1.jar:." \
+  org/howard/edu/lsp/assignment6/*.java
+```
+
+**Run Tests:**
+```bash
+java -jar lib/junit-platform-console-standalone-1.10.1.jar \
+  --class-path ".:lib/*" \
+  --select-class org.howard.edu.lsp.assignment6.IntegerSetTest
+```
+
+#### From VS Code:
+1. Open `IntegerSetTest.java`
+2. Click "Run Test" button above the class or individual test methods
+3. View results in the Test Explorer panel
+
+### Test Results
+```
+[        31 tests found           ]
+[         0 tests skipped         ]
+[        31 tests started         ]
+[         0 tests aborted         ]
+[        31 tests successful      ]
+[         0 tests failed          ]
+```
+
+All 31 tests pass, covering:
+* 7 basic operations tests (clear, length, isEmpty, contains, add, remove, toString)
+* 6 largest/smallest tests (including exception handling)
+* 5 equals tests (empty sets, null, same reference, equal/unequal sets)
+* 13 set operation tests (union, intersect, diff, complement with various scenarios)
+
+### AI Usage Summary
+
+**Tool Used:** Claude (Anthropic)
+
+**Purpose:**
+* Guidance on JUnit 5 setup and configuration in VS Code
+* Troubleshooting compilation errors related to missing JUnit dependencies
+* Help structuring comprehensive test cases for edge cases
+* Verification that all design rules were properly implemented
+* Assistance with command-line compilation and test execution
+
+**Example Prompt:** "How do I set up JUnit 5 for a Java project in VS Code on macOS? I'm getting 'package org.junit.jupiter.api does not exist' errors."
+
+**Excerpt from AI Response:** "The issue is that JUnit 5 is not installed in your project. Download the junit-platform-console-standalone jar file and add it to your classpath..."
+
+**How Used:**
+* Downloaded JUnit 5 standalone JAR as instructed
+* Added proper imports (`org.junit.jupiter.api.*` instead of `org.junit.*`)
+* Followed compilation commands with correct classpath configuration
+* Created comprehensive test suite based on suggested test patterns
+
